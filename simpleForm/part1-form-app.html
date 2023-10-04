@@ -6,10 +6,14 @@
     <ul>
         <!-- Loop through the facilities array, assign a click handler, and set or
              remove the "active" css class if needed -->
-        <li v-for="" v-on:click="" v-bind:class="">
+        <li v-for="facility in facilities"
+        v-on:click="toggleActive(facility)" 
+        v-bind:class="{ active: facility.active }">
+        <!-- This will loop through each item while assiging the current item to the facility variable on each interation -->
             <!-- Display the name and price for every entry in the array .
                 Use the formatCurrency method for formatting the price -->
-            {{}} <span>{{}}</span>
+            {{ facility.name }} <span>{{ formatCurency(facility.price) }}</span>
+        <!-- This will display the name of the current facility as well as showing the price for it -->
         </li>
     </ul>
 
