@@ -19,7 +19,8 @@
 
     <div class="total">
         <!-- Calculate the total price of all chosen facililtys. Format it as currency using formatCurrency. -->
-        Total: <span></span>
+        Total: <span>{{ formatCurrency(total()) }}</span>
+        <!-- This will calculate and format the total price of all active facilities -->
     </div>
 
 </form>
