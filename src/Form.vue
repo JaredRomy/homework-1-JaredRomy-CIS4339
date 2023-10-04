@@ -1,13 +1,18 @@
 <template>
     <form v-cloak id="main">
         <h1>Facilities</h1>
+        <!-- List of facilities -->
         <ul>
+            <!-- Looping through each facility in the facilities array -->
             <li v-for="facility in facilities" :key="facility.name"
                 @click="toggleActive(facility)" 
                 :class="{ active: facility.active }">
+                <!-- Displaying facility name and formatted price -->
                 {{ facility.name }} <span>{{ formatCurrency(facility.price) }}</span>
             </li>
         </ul>
+
+        <!-- Total price display -->
         <div class="total">
             Total: <span>{{ formatCurrency(total()) }}</span>
         </div>
@@ -17,8 +22,10 @@
 <script setup>
 import { ref } from 'vue';
 
-// Data
+// Reactive data property for the facilities array
 const facilities = ref([
+    // Each object represents a facility with a name, price, and active status
+    // The initial active statuses are set here
     { name: 'Ballroom', price: 5000, active: true },
     { name: 'Backyard', price: 400, active: false },
     { name: 'Wellness Area', price: 250, active: false },
@@ -26,16 +33,19 @@ const facilities = ref([
 ]);
 
 // Methods
+// Method to toggle the active status of a facility
 const toggleActive = (facility) => {
     facility.active = !facility.active;
 };
 
+// Method to calculate the total price of all active facilities
 const total = () => {
     return facilities.value.reduce((sum, facility) => {
         return facility.active ? sum + facility.price : sum;
     }, 0);
 };
 
+// Method to format a number as currency
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
 };
