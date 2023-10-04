@@ -60,16 +60,16 @@
         // method to calculate the total amount
         total: function(){
             // variable to hold total
-            var total;
+            var total = 0;
 
             //loop through facilities
-            //
+            this.facilities.forEach(facility => {
                 //check whether item is active
-                //
+                if (facility.active) {
                     //sum up for total
-                    //
-                //
-            //
+                    total += facility.price;
+                }
+            });
 
            return total;
         },
